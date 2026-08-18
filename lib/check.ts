@@ -140,6 +140,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
         preface: "過去2週間のあいだ、どのくらいの頻度でありましたか？",
         text: "緊張感や不安を感じる、または神経が高ぶっている",
         options: FREQUENCY_OPTIONS,
+        image: "/check/gad/check-gad-q1.png",
       },
       {
         id: "gad2",
@@ -147,6 +148,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
         preface: "過去2週間のあいだ、どのくらいの頻度でありましたか？",
         text: "心配するのをやめることができない、または心配をコントロールできない",
         options: FREQUENCY_OPTIONS,
+        image: "/check/gad/check-gad-q2.png",
       },
       {
         id: "gad3",
@@ -154,6 +156,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
         preface: "過去2週間のあいだ、どのくらいの頻度でありましたか？",
         text: "いろいろなことについて心配しすぎる",
         options: FREQUENCY_OPTIONS,
+        image: "/check/gad/check-gad-q3.png",
       },
       {
         id: "gad4",
@@ -161,6 +164,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
         preface: "過去2週間のあいだ、どのくらいの頻度でありましたか？",
         text: "くつろぐのが難しい",
         options: FREQUENCY_OPTIONS,
+        image: "/check/gad/check-gad-q4.png",
       },
       {
         id: "gad5",
@@ -168,6 +172,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
         preface: "過去2週間のあいだ、どのくらいの頻度でありましたか？",
         text: "じっとしていられないほどそわそわする",
         options: FREQUENCY_OPTIONS,
+        image: "/check/gad/check-gad-q5.png",
       },
       {
         id: "gad6",
@@ -175,6 +180,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
         preface: "過去2週間のあいだ、どのくらいの頻度でありましたか？",
         text: "イライラしたり、すぐ腹を立てたりする",
         options: FREQUENCY_OPTIONS,
+        image: "/check/gad/check-gad-q6.png",
       },
       {
         id: "gad7",
@@ -182,6 +188,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
         preface: "過去2週間のあいだ、どのくらいの頻度でありましたか？",
         text: "何か恐ろしいことが起きそうな気がする",
         options: FREQUENCY_OPTIONS,
+        image: "/check/gad/check-gad-q7.png",
       },
     ],
   },

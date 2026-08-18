@@ -151,7 +151,10 @@ function CheckQuestionContent() {
       <div className="flex-1 min-h-0 flex flex-col px-3 sm:px-5 pt-3 pb-2 gap-3 max-w-lg mx-auto w-full">
         {question.image ? (
           <div className="flex-1 min-h-0 relative w-full">
-            <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-white shadow-sm overflow-hidden flex items-center justify-center">
+            <div
+              className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden flex items-center justify-center"
+              style={{ backgroundColor: check.bg }}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={question.image}
