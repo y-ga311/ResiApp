@@ -131,19 +131,22 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s1", type: "intro",
       emoji: "📒",
       title: "活動日記をつけてみよう",
-      body: "気分が上がる「自分だけのパターン」を発見しよう。",
+      image: "/training/行動活性化/sk1-l3-s1.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s2", type: "learn",
       emoji: "🗂️",
       title: "活動日記ってなに？",
-      body: "1日の行動と気分を記録するシンプルなメモです。\n\n例：\n朝 → シャワーを浴びた → 気分4点\n昼 → 友だちと昼食 → 気分7点\n放課後 → 部屋でゴロゴロ → 気分3点\n夜 → 好きなアニメを見た → 気分6点",
+      image: "/training/行動活性化/sk1-l3-s2.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s3", type: "learn",
       emoji: "🔍",
       title: "なぜ記録するの？",
-      body: "3つの理由があります。\n\n① 気分が下がりやすい時間帯がわかる\n② 気分が上がる行動のパターンが見える\n③ 「毎日何もしていない」という思い込みが修正できる（意外とやってる！）",
+      image: "/training/行動活性化/sk1-l3-s3.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s4", type: "quiz",
@@ -161,7 +164,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s5", type: "tip",
       emoji: "💡",
       title: "続けるコツ",
-      body: "完璧に書かなくてOK！\n\n・1日2〜3行でも十分\n・寝る前5分にまとめて書いてもOK\n・気分スコアだけでもOK\n\n「ざっくり書く」を続ける方が大事です。",
+      image: "/training/行動活性化/sk1-l3-s5.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s6", type: "work",
@@ -177,7 +181,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s7", type: "summary",
       emoji: "🌈",
       title: "今日のまとめ",
-      body: "活動日記をつけると、\n自分の「気分が上がるパターン」が見えてくる！\n\n今日からゆるく続けてみよう。",
+      image: "/training/行動活性化/sk1-l3-s7.png",
+      // 画像内に文言があるため body は省略
     },
   ],
 
@@ -186,19 +191,22 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s1", type: "intro",
       emoji: "📋",
       title: "好きなことリストを作る",
-      body: "自分だけの「活動メニュー」を作って、気分を上げる行動を増やそう。",
+      image: "/training/行動活性化/sk1-l4-s1.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s2", type: "learn",
       emoji: "🤔",
       title: "なぜリストが必要なの？",
-      body: "落ち込んでいるとき、人は「やりたいことが何もない」と感じがちです。\n\nでも実は、過去には楽しめていたこと、興味があることがたくさんあるはず。\n\nリストを作ることで、落ち込んでいてもすぐ取り出せる「行動の引き出し」ができます。",
+      image: "/training/行動活性化/sk1-l4-s2.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s3", type: "learn",
       emoji: "🗃️",
       title: "4つのカテゴリで考えよう",
-      body: "① 以前楽しんでいたこと\n　→ スポーツ、音楽、ゲーム、読書、料理…\n\n② やってみたいこと\n　→ 行ったことがないカフェ、習いたいこと…\n\n③ 達成感があること\n　→ 部屋の片付け、課題を1つ終わらせる…\n\n④ 人とつながれること\n　→ 友だちと話す、グループLINEで近況報告…",
+      image: "/training/行動活性化/sk1-l4-s3.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s4", type: "quiz",
@@ -216,7 +224,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s5", type: "tip",
       emoji: "⭐",
       title: "「気軽さ」で分類しよう",
-      body: "リストができたら、気軽さで3段階に分けます。\n\n⭐ すぐできる（今すぐ・0円・1人でOK）\n⭐⭐ 少し準備が要る\n⭐⭐⭐ 時間やお金がかかる\n\n⭐のものから今週試してみよう！",
+      image: "/training/行動活性化/sk1-l4-s5.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s6", type: "work",
@@ -232,7 +241,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s7", type: "summary",
       emoji: "🎒",
       title: "今日のまとめ",
-      body: "活動リストは「行動の引き出し」！\n\n落ち込んだとき、リストを見て⭐のものから試してみよう。",
+      image: "/training/行動活性化/sk1-l4-s7.png",
+      // 画像内に文言があるため body は省略
     },
   ],
 
@@ -241,19 +251,22 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s1", type: "intro",
       emoji: "🏆",
       title: "達成感を増やす方法",
-      body: "「楽しさ」と「達成感」、2つの気分アップ方法を学ぼう。",
+      image: "/training/行動活性化/sk1-l5-s1.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s2", type: "learn",
       emoji: "🎮",
       title: "「楽しさ」と「達成感」の違い",
-      body: "楽しさ系の活動\n→ やっている間、気持ちよかったりリラックスできるもの\n例：好きな動画を見る、音楽を聴く、おしゃべりする\n\n達成感系の活動\n→ 終わった後に「やった！」と感じるもの\n例：部屋を片付ける、課題を終わらせる、料理をする",
+      image: "/training/行動活性化/sk1-l5-s2.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s3", type: "learn",
       emoji: "💎",
       title: "達成感が特に大切な理由",
-      body: "落ち込んでいるとき、どちらも減ってしまいがちです。\n\nでも「達成感」は特に意欲回復に効果的！\n\n脳が「自分はできる」という感覚（自己効力感）を取り戻す助けになります。",
+      image: "/training/行動活性化/sk1-l5-s3.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s4", type: "quiz",
@@ -271,7 +284,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s5", type: "tip",
       emoji: "✅",
       title: "小さな「できた！」を集めよう",
-      body: "今日できたことを振り返ってみてください。\n\n✓ 今日の日記を書いた\n✓ 朝ごはんを食べた\n✓ シャワーを浴びた\n✓ 教科書を1ページ読んだ\n\n比べるのは昨日の自分だけ！",
+      image: "/training/行動活性化/sk1-l5-s5.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s6", type: "work",
@@ -287,7 +301,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s7", type: "summary",
       emoji: "🚀",
       title: "今日のまとめ",
-      body: "楽しさだけじゃなく「達成感」も大切！\n\n小さな「できた！」を毎日1つ積み上げよう。",
+      image: "/training/行動活性化/sk1-l5-s7.png",
+      // 画像内に文言があるため body は省略
     },
   ],
 
@@ -296,19 +311,22 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s1", type: "intro",
       emoji: "🕐",
       title: "毎日のルーティンを見直す",
-      body: "1日のリズムを整えることで、気分を安定させよう。",
+      image: "/training/行動活性化/sk1-l6-s1.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s2", type: "learn",
       emoji: "😴",
       title: "ルーティンが崩れると…",
-      body: "気分が落ちているとき、1日の流れがバラバラになりがちです。\n\n夜遅くまで起きている\n　→ 朝起きられない\n　→ 午後になってやっと活動する\n　→ また夜型に…\n\nこの乱れたリズムが、さらに気分を不安定にします。",
+      image: "/training/行動活性化/sk1-l6-s2.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s3", type: "learn",
       emoji: "⚓",
       title: "3つのアンカーを決めよう",
-      body: "毎日必ず守る「固定点（アンカー）」を3つ設定します。\n\n① 起床時刻：毎朝同じ時間に起きる\n　（休日も±1時間以内）\n\n② 食事：できれば1日3食\n\n③ 就寝時刻：遅くとも0時前に就寝\n\nこの3つが整うだけで、気分の安定に大きく効果があります。",
+      image: "/training/行動活性化/sk1-l6-s3.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s4", type: "quiz",
@@ -326,7 +344,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s5", type: "tip",
       emoji: "📅",
       title: "ルーティンに好きな活動を組み込む",
-      body: "アンカーが決まったら、隙間に「活動リスト」のものを入れてみよう。\n\n例：\n7:00 起床・シャワー\n8:00 朝ごはん + 好きな音楽\n放課後 友だちと少し話してから帰宅\n21:00 宿題を1科目\n22:30 活動日記を書く\n23:00 就寝",
+      image: "/training/行動活性化/sk1-l6-s5.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s6", type: "work",
@@ -342,7 +361,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s7", type: "summary",
       emoji: "🌙",
       title: "今日のまとめ",
-      body: "3つのアンカーを決めて、\n1日のリズムを整えよう。\n\n崩れた日があっても、次の日にリセット！",
+      image: "/training/行動活性化/sk1-l6-s7.png",
+      // 画像内に文言があるため body は省略
     },
   ],
 
@@ -351,19 +371,22 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s1", type: "intro",
       emoji: "🤝",
       title: "人とのつながりを大切に",
-      body: "人との関わりが気分に与える力を知ろう。",
+      image: "/training/行動活性化/sk1-l7-s1.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s2", type: "learn",
       emoji: "❤️",
       title: "つながりは「幸福ホルモン」を生む",
-      body: "人は本来、社会的な生き物です。\n\n他者とつながることで、脳から「オキシトシン」（幸福ホルモン）が分泌され、気分が改善されることが科学的に証明されています。\n\n落ち込んでいるとき、人とのかかわりを避けがちですが、少しだけ踏み出すと気分が変わることが多いです。",
+      image: "/training/行動活性化/sk1-l7-s2.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s3", type: "learn",
       emoji: "💬",
       title: "「大きなつながり」じゃなくていい",
-      body: "・友だちにひとことLINEを送る\n・家族と5分だけ話す\n・クラスメートに「最近どう？」と声をかける\n・好きなコミュニティ（部活・SNS）に少し参加する\n\nこれだけで十分「社会的なつながり」になります。",
+      image: "/training/行動活性化/sk1-l7-s3.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s4", type: "quiz",
@@ -381,7 +404,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s5", type: "tip",
       emoji: "📱",
       title: "「返信不要LINEを送るだけ」でOK",
-      body: "「人と話すのがしんどい」と感じるときは、こんな小さな一歩でOKです。\n\n・「最近どう？」と送るだけ\n・「元気にしてる？」と送るだけ\n・スタンプを1つ送るだけ\n\n返事が来なくてもOK。送ること自体が「行動」です。",
+      image: "/training/行動活性化/sk1-l7-s5.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s6", type: "work",
@@ -397,7 +421,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s7", type: "summary",
       emoji: "🌸",
       title: "今日のまとめ",
-      body: "人とのつながりは気分を上げる最強の行動！\n\n「大したことない一言」が、\n自分にも相手にも力をくれることがある。",
+      image: "/training/行動活性化/sk1-l7-s7.png",
+      // 画像内に文言があるため body は省略
     },
   ],
 
@@ -406,19 +431,22 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s1", type: "intro",
       emoji: "🗓️",
       title: "週間活動計画を立てる",
-      body: "1週間分の活動を計画して、行動を習慣化しよう。",
+      image: "/training/行動活性化/sk1-l8-s1.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s2", type: "learn",
       emoji: "📆",
       title: "なぜ週間計画が必要？",
-      body: "日々の計画だけでは「今日は気分が乗らないから、また明日…」となりがちです。\n\n週単位で計画することで、活動がより習慣化されやすくなります。\n\n「月曜はこれ、水曜はこれ」と決めると、気分に関係なく動きやすくなります。",
+      image: "/training/行動活性化/sk1-l8-s2.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s3", type: "learn",
       emoji: "🎯",
       title: "週間計画の作り方 3ステップ",
-      body: "ステップ1：活動リストから今週やるものを選ぶ\n　・楽しさ系 2〜3個\n　・達成感系 2〜3個\n　・つながり系 1〜2個\n\nステップ2：曜日と時間を決める\n\nステップ3：実行して「できた / できなかった」を記録",
+      image: "/training/行動活性化/sk1-l8-s3.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s4", type: "quiz",
@@ -436,7 +464,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s5", type: "tip",
       emoji: "✨",
       title: "計画のコツ",
-      body: "「理想の計画」より「できそうな計画」を立てよう。\n\n例えば：\n月曜日 放課後：友だちと話す\n水曜日 夜：好きな動画を30分\n金曜日 夜：部屋の片付け15分\n日曜日 夜：今週の振り返り\n\nこのくらいのゆるさがちょうどいい！",
+      image: "/training/行動活性化/sk1-l8-s5.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s6", type: "work",
@@ -452,7 +481,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s7", type: "summary",
       emoji: "🏁",
       title: "今日のまとめ",
-      body: "週間計画を立てて、行動を習慣化しよう！\n\n完璧じゃなくていい。\n「少しできた」を積み重ねることが大切。",
+      image: "/training/行動活性化/sk1-l8-s7.png",
+      // 画像内に文言があるため body は省略
     },
   ],
 
@@ -461,19 +491,22 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s1", type: "intro",
       emoji: "👟",
       title: "「小さな一歩」で気分を変える",
-      body: "継続を妨げる落とし穴を知って、乗り越えよう。",
+      image: "/training/行動活性化/sk1-l9-s1.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s2", type: "learn",
       emoji: "⚠️",
       title: "落とし穴① やる気待ち",
-      body: "「やる気が出たらやろう」と思って、ずっと待ち続けていませんか？\n\nやる気は「行動した後」に生まれます。\n行動しないからやる気も出ない、という悪循環に陥ります。\n\n解決策：「5分だけやってみる」と決める",
+      image: "/training/行動活性化/sk1-l9-s2.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s3", type: "learn",
       emoji: "🎯",
       title: "落とし穴② 完璧主義",
-      body: "「どうせやるなら完璧にやらないと意味がない」\n\nこう思っていませんか？\n\n完璧にできないなら何もしない、となってしまいます。\n\n解決策：「完璧にやる」より「とりあえずやる」が大事",
+      image: "/training/行動活性化/sk1-l9-s3.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s4", type: "quiz",
@@ -491,7 +524,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s5", type: "tip",
       emoji: "🌱",
       title: "「小さな一歩」の例",
-      body: "これだけでOKです。\n\n・5分だけ外を歩く\n・好きな飲み物を作る\n・友だちにひとことLINEを送る\n・窓を開けて深呼吸する\n・机の上だけ片付ける\n\n気分が沈んでいるとき、この「小さな一歩」が最初の変化を作ります。",
+      image: "/training/行動活性化/sk1-l9-s5.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s6", type: "work",
@@ -507,7 +541,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s7", type: "summary",
       emoji: "🔥",
       title: "今日のまとめ",
-      body: "「やる気待ち」と「完璧主義」は行動の大敵！\n\n「5分だけ」「とりあえずやる」\nこの2つを覚えておこう。",
+      image: "/training/行動活性化/sk1-l9-s7.png",
+      // 画像内に文言があるため body は省略
     },
   ],
 
@@ -516,13 +551,15 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s1", type: "intro",
       emoji: "🎓",
       title: "行動活性化の振り返り",
-      body: "おめでとう！ここまで頑張ってきたね。一緒に振り返ろう。",
+      image: "/training/行動活性化/sk1-l10-s1.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s2", type: "learn",
       emoji: "📚",
       title: "ここまで学んできたこと",
-      body: "L1 行動が気分を変える\nL2 気分と行動のループ\nL3 活動日記でパターン発見\nL4 活動リストを作る\nL5 楽しさと達成感の2種類\nL6 ルーティンで気分を安定\nL7 人とのつながりの力\nL8 週間計画で習慣化\nL9 落とし穴への対処法\n\nこれ全部、あなたのものになりました！",
+      image: "/training/行動活性化/sk1-l10-s2.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s3", type: "quiz",
@@ -540,7 +577,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s4", type: "tip",
       emoji: "🌟",
       title: "これからのために覚えておこう",
-      body: "行動活性化は、1回やって終わりじゃありません。むしろこれからが本番！\n\n気分が落ちたときのためのチェックリスト：\n\n① 活動リストを開いて⭐のものから試す\n② 気分スコアをつけてみる\n③ 誰かにひとこと連絡してみる\n④ 「5分だけ」ルールを使う",
+      image: "/training/行動活性化/sk1-l10-s4.png",
+      // 画像内に文言があるため body は省略
     },
     {
       id: "s5", type: "work",
@@ -556,7 +594,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       id: "s6", type: "summary",
       emoji: "🏆",
       title: "SK01 行動活性化 完了！",
-      body: "よく頑張ったね！\n\nあなたはもう、レジリエンスを高めるための「道具箱」を持っています。\n\n次のスキルにも挑戦してみよう。どうか自分を大切にしてください。",
+      image: "/training/行動活性化/sk1-l10-s6.png",
+      // 画像内に文言があるため body は省略
     },
   ],
 

@@ -123,7 +123,10 @@ export default function SkillPage({
         <div className="flex flex-col gap-3 px-4 py-4">
           {lessons.length > 0 ? (
             lessons.map((lesson, i) => {
-              const isUnlocked = lesson.completed || i === skill.completedLessons;
+              // 完了済み、または次のレッスン、またはスライド実装済みスキルは閲覧可
+              const slidesReady = ["sk1", "sk2", "sk3", "sk4", "sk5"].includes(skillId);
+              const isUnlocked =
+                slidesReady || lesson.completed || i <= skill.completedLessons;
               return (
                 <LessonRow
                   key={lesson.id}

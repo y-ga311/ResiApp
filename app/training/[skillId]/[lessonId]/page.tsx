@@ -3,13 +3,21 @@
 import { use, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ChevronLeft, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { SKILLS, LESSONS_BY_SKILL, TODAY_LESSON } from "@/lib/mock-data";
 import { SK1_SLIDES } from "@/lib/slides-sk1";
+import { SK2_SLIDES } from "@/lib/slides-sk2";
+import { SK3_SLIDES } from "@/lib/slides-sk3";
+import { SK4_SLIDES } from "@/lib/slides-sk4";
+import { SK5_SLIDES } from "@/lib/slides-sk5";
 import LessonSlidePlayer from "@/components/LessonSlidePlayer";
 
 const SLIDES_MAP: Record<string, Record<string, import("@/lib/types").Slide[]>> = {
   sk1: SK1_SLIDES,
+  sk2: SK2_SLIDES,
+  sk3: SK3_SLIDES,
+  sk4: SK4_SLIDES,
+  sk5: SK5_SLIDES,
 };
 
 export default function LessonDetailPage({
@@ -86,74 +94,20 @@ export default function LessonDetailPage({
     );
   }
 
-  // ── Legacy text viewer (SK02–05 until slides are added) ──
+  // スライド未登録時のフォールバック
   return (
-    <div className="h-full flex flex-col overflow-hidden bg-bg">
-      {/* Header */}
-      <div className="flex-shrink-0 flex items-center gap-3 px-4 py-4 bg-card shadow-sm">
-        <Link href={`/training/${skillId}`}>
-          <ChevronLeft size={24} className="text-t1" />
-        </Link>
-        <div className="flex-1 min-w-0">
-          <p className="text-[11px] text-t3">{skill.name}</p>
-          <p className="text-[15px] font-bold text-t1 truncate">{lesson.title}</p>
-        </div>
-        <span className="text-[12px] text-t3 flex-shrink-0">{lesson.duration}分</span>
-      </div>
-
-      {/* Skill color accent bar */}
-      <div className="flex-shrink-0 h-1" style={{ backgroundColor: skill.color }} />
-
-      {/* Content — scrollable */}
-      <div className="flex-1 overflow-y-auto px-5 py-6">
-        {lesson.content.trim() ? (
-          <div className="text-[14px] text-t1 leading-relaxed whitespace-pre-wrap">
-            {lesson.content.trim()}
-          </div>
-        ) : (
-          <div className="flex flex-col gap-4">
-            <div
-              className="rounded-2xl p-4"
-              style={{ backgroundColor: `${skill.color}18` }}
-            >
-              <p className="text-[13px] font-semibold" style={{ color: skill.color }}>
-                📖 このレッスンについて
-              </p>
-              <p className="text-[13px] text-t2 mt-2">
-                「{lesson.title}」について学びます。
-              </p>
-            </div>
-            <p className="text-[14px] text-t1 leading-relaxed">
-              レジリエンスを高めるためのスキルを、日常生活の中で少しずつ実践していきましょう。1日5分からはじめられる具体的なワークが用意されています。
-            </p>
-            <div className="bg-card rounded-2xl p-4 shadow-sm">
-              <p className="text-[13px] font-bold text-t1 mb-2">今日のワーク</p>
-              <p className="text-[13px] text-t2 leading-relaxed">
-                今日感じたことや気づいたことを、簡単にメモしてみましょう。どんな小さなことでも大丈夫です。
-              </p>
-            </div>
-            <div
-              className="rounded-2xl p-4 text-center"
-              style={{ backgroundColor: `${skill.color}10` }}
-            >
-              <p className="text-[13px]" style={{ color: skill.color }}>
-                🚧 このレッスンのコンテンツは近日公開予定です
-              </p>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Complete Button */}
-      <div className="flex-shrink-0 px-4 py-4 bg-bg border-t border-stroke">
-        <button
-          onClick={() => setCompleted(true)}
-          className="w-full flex items-center justify-center h-[54px] rounded-[27px] text-white font-bold text-[15px]"
-          style={{ backgroundColor: skill.color }}
-        >
-          レッスン完了！
-        </button>
-      </div>
+    <div className="h-full flex flex-col items-center justify-center px-8 gap-4 bg-bg text-center">
+      <p className="text-[16px] font-bold text-t1">スライドが見つかりません</p>
+      <p className="text-[13px] text-t2">
+        「{lesson.title}」のレッスンデータがまだ登録されていません。
+      </p>
+      <Link
+        href={`/training/${skillId}`}
+        className="mt-2 flex items-center justify-center h-[48px] px-6 rounded-[24px] text-white font-bold text-[14px]"
+        style={{ backgroundColor: skill.color }}
+      >
+        レッスン一覧に戻る
+      </Link>
     </div>
   );
 }
