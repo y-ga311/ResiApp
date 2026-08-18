@@ -118,7 +118,7 @@ export default function HomePage() {
           {/* ── Weekly self-check banner ── */}
           {!CHECK_DONE_THIS_WEEK ? (
             /* 未実施：アクションを促すバナー */
-            <Link href="/check/question">
+            <Link href="/check">
               <div className="rounded-3xl overflow-hidden shadow-md">
                 {/* 上部：警告ストライプ */}
                 <div className="bg-accent px-5 py-3 flex items-center gap-3">
@@ -144,7 +144,7 @@ export default function HomePage() {
                         前回から {LAST_CHECK_DAYS_AGO} 日経過
                       </span>
                       <span className="text-[11px] text-t3">
-                        約3分 ・ PHQ-9 + GAD-7
+                        PHQ-9 / GAD-7 / PSQI から選べる
                       </span>
                     </div>
                   </div>

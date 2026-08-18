@@ -615,34 +615,8 @@ export const CHECK_HISTORY: CheckScore[] = [
   { week: "W4（今週）", phq: 8, gad: 6, psqi: 7, total: 72 },
 ];
 
-export const PHQ9_QUESTIONS = [
-  "物事に対してほとんど興味がない、または楽しめない",
-  "気分が落ち込んでいる、憂うつ、または絶望的な気持ち",
-  "眠れない、眠りすぎる",
-  "疲れた感じがする、気力がない",
-  "食欲がない、または食べすぎる",
-  "自分が悪い人間だと感じる、または自分を責める",
-  "物事に集中するのが難しい（新聞を読んだり、テレビを見たりするとき）",
-  "動いたり、しゃべったりするのが普段よりも遅い。または反対にそわそわして、じっとしていられない",
-  "死んだほうがましだ、または自分を何らかの形で傷つけたいと思う",
-];
-
-export const GAD7_QUESTIONS = [
-  "緊張感や不安を感じる、または神経が高ぶっている",
-  "心配するのをやめることができない、または心配をコントロールできない",
-  "いろいろなことについて心配しすぎる",
-  "くつろぐのが難しい",
-  "じっとしていられないほどそわそわする",
-  "イライラしたり、すぐ腹を立てたりする",
-  "何か恐ろしいことが起きそうな気がする",
-];
-
-export const ANSWER_OPTIONS = [
-  { label: "全くない", value: 0 },
-  { label: "数日", value: 1 },
-  { label: "半分以上", value: 2 },
-  { label: "ほぼ毎日", value: 3 },
-];
+// セルフチェック設問は lib/check.ts に集約（PHQ-9 / GAD-7 / PSQI）
+export { FREQUENCY_OPTIONS as ANSWER_OPTIONS } from "./check";
 
 export const BADGES: Badge[] = [
   { id: "first-check", name: "初回Check", icon: "CircleCheck", color: "#1B3A6B", earned: true },
