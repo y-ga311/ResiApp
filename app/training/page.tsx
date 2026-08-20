@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { CircleCheck, Calendar, Zap, Brain, Target, MessageCircle, Moon } from "lucide-react";
+import { Zap, Brain, Target, MessageCircle, Moon } from "lucide-react";
 import TabBar from "@/components/TabBar";
 import AppHeader from "@/components/AppHeader";
-import { SKILLS, USER } from "@/lib/mock-data";
+import { SKILLS } from "@/lib/mock-data";
 import type { Skill } from "@/lib/types";
 
 const SKILL_ICONS: Record<string, React.ElementType> = {
@@ -60,24 +60,12 @@ function SkillCard({ skill }: { skill: Skill }) {
 export default function TrainingPage() {
   return (
     <div className="h-full flex flex-col overflow-hidden bg-bg">
-      <AppHeader showBadge />
+      <AppHeader />
 
-      {/* Header */}
-      <div className="flex-shrink-0 px-5 pt-2 pb-4 flex flex-col gap-3">
+      <div className="flex-shrink-0 px-5 pt-2 pb-4">
         <h1 className="text-2xl font-bold text-t1">トレーニング</h1>
-        <div className="flex gap-[10px] flex-wrap">
-          <div className="flex items-center gap-[6px] bg-accent-lt px-[14px] py-2 rounded-full">
-            <CircleCheck size={14} className="text-accent" />
-            <span className="text-[12px] font-semibold text-accent">{USER.totalLessons}レッスン完了</span>
-          </div>
-          <div className="flex items-center gap-[6px] bg-[#EEF2FF] px-[14px] py-2 rounded-full">
-            <Calendar size={14} color="#818CF8" />
-            <span className="text-[12px] font-semibold text-[#818CF8]">3週目継続中</span>
-          </div>
-        </div>
       </div>
 
-      {/* Skill Cards — scrollable */}
       <div className="flex-1 overflow-y-auto">
         <div className="flex flex-col gap-3 px-4 py-4">
           {SKILLS.map((skill) => (

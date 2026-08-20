@@ -612,7 +612,8 @@ export const CHECK_HISTORY: CheckScore[] = [
   { week: "W1", phq: 14, gad: 12, psqi: 10, total: 52 },
   { week: "W2", phq: 12, gad: 10, psqi: 9, total: 58 },
   { week: "W3", phq: 10, gad: 8, psqi: 8, total: 65 },
-  { week: "W4（今週）", phq: 8, gad: 6, psqi: 7, total: 72 },
+  // 確認用: PHQ 3→ココロハ / GAD 6→フワリ
+  { week: "W4（今週）", phq: 3, gad: 6, psqi: 7, total: 72 },
 ];
 
 // セルフチェック設問は lib/check.ts に集約（PHQ-9 / GAD-7 / PSQI）

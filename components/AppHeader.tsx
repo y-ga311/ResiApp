@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Bell } from "lucide-react";
+import { Settings } from "lucide-react";
 import { USER } from "@/lib/mock-data";
 
 interface AppHeaderProps {
@@ -36,9 +36,9 @@ export default function AppHeader({ showBadge = false }: AppHeaderProps) {
           </span>
         </div>
       </div>
-      <Link href="/settings" className="relative">
+      <Link href="/settings" className="relative" aria-label="設定">
         <div className="w-10 h-10 rounded-full bg-card shadow-sm flex items-center justify-center">
-          <Bell size={20} className="text-t2" />
+          <Settings size={20} className="text-t2" />
         </div>
         {showBadge && (
           <span className="absolute top-[2px] right-[2px] w-[10px] h-[10px] rounded-full bg-red-500 border-2 border-bg" />

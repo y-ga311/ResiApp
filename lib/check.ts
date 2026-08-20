@@ -42,9 +42,9 @@ export const FREQUENCY_OPTIONS: ChoiceOption[] = [
 export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
   phq: {
     id: "phq",
-    name: "うつ症状チェック",
+    name: "こころの状態チェック",
     shortName: "PHQ-9",
-    description: "気分の落ち込みや意欲の変化を確認します",
+    description: "こころの調子や意欲の変化を確認します",
     duration: "約3分・9問",
     color: "#818CF8",
     bg: "#EEF2FF",
@@ -126,9 +126,9 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
   },
   gad: {
     id: "gad",
-    name: "不安症状チェック",
+    name: "やすらぎの状態チェック",
     shortName: "GAD-7",
-    description: "心配や緊張の強さを確認します",
+    description: "心のやすらぎや心配の強さを確認します",
     duration: "約3分・7問",
     color: "#38BDF8",
     bg: "#E0F2FE",
@@ -194,7 +194,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
   },
   psqi: {
     id: "psqi",
-    name: "睡眠の質チェック",
+    name: "ねむりの状態チェック",
     shortName: "PSQI簡易版",
     description: "眠りのリズムと質を確認します",
     duration: "約3分・5問",
@@ -208,6 +208,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
         preface: "過去1ヶ月の平均的な様子で答えてください",
         text: "普段の就寝時刻は何時ですか？",
         placeholder: "23:00",
+        image: "/check/psqi/check-psqi-q1.png",
       },
       {
         id: "psqi2",
@@ -220,6 +221,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
           { label: "31〜60分", value: 2 },
           { label: "60分以上", value: 3 },
         ],
+        image: "/check/psqi/check-psqi-q2.png",
       },
       {
         id: "psqi3",
@@ -227,6 +229,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
         preface: "過去1ヶ月の平均的な様子で答えてください",
         text: "普段の起床時刻は何時ですか？",
         placeholder: "7:00",
+        image: "/check/psqi/check-psqi-q3.png",
       },
       {
         id: "psqi4",
@@ -239,6 +242,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
           { label: "5〜6時間", value: 2 },
           { label: "5時間未満", value: 3 },
         ],
+        image: "/check/psqi/check-psqi-q4.png",
       },
       {
         id: "psqi5",
@@ -251,6 +255,7 @@ export const CHECK_TYPES: Record<CheckTypeId, CheckType> = {
           { label: "悪い", value: 2 },
           { label: "とても悪い", value: 3 },
         ],
+        image: "/check/psqi/check-psqi-q5.png",
       },
     ],
   },
