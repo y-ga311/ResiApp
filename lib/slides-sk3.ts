@@ -93,8 +93,8 @@ export const SK3_SLIDES: Record<string, Slide[]> = {
         question: "良い問題定義に近いのは？",
         options: [
           { label: "人生がうまくいかない", correct: false },
-          { label: "金曜までに提出物を1つ完成させる", correct: true },
           { label: "自分がダメな人間だ", correct: false },
+          { label: "金曜までに提出物を1つ完成させる", correct: true },
         ],
         explanation: "具体的で行動可能な形が、良い問題定義です。",
       },
@@ -151,8 +151,8 @@ export const SK3_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "ブレインストーミングで大切なのは？",
         options: [
-          { label: "最初から最良案だけ出す", correct: false },
           { label: "評価せずに量を出す", correct: true },
+          { label: "最初から最良案だけ出す", correct: false },
           { label: "実行できる案だけ出す", correct: false },
         ],
         explanation: "この段階では実行可能性より発想の量が大事です。",
@@ -270,8 +270,8 @@ export const SK3_SLIDES: Record<string, Slide[]> = {
         question: "良いアクションプランは？",
         options: [
           { label: "そのうちやる", correct: false },
-          { label: "木曜の放課後、図書館でプリント1枚", correct: true },
           { label: "気合を入れる", correct: false },
+          { label: "木曜の放課後、図書館でプリント1枚", correct: true },
         ],
         explanation: "日時と場所と行動が具体的なほど実行しやすいです。",
       },
@@ -328,8 +328,8 @@ export const SK3_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "振り返りで大切な見方は？",
         options: [
-          { label: "できなかったら才能がない", correct: false },
           { label: "結果を次の仮説の材料にする", correct: true },
+          { label: "できなかったら才能がない", correct: false },
           { label: "二度と試さない", correct: false },
         ],
         explanation: "うまくいかなくても、学びがあれば前進です。",
@@ -440,8 +440,8 @@ export const SK3_SLIDES: Record<string, Slide[]> = {
         question: "行き詰まったら最初に戻るのは？",
         options: [
           { label: "いきなり全部やり直す", correct: false },
-          { label: "問題の明確化に戻る", correct: true },
           { label: "考えるのをやめる", correct: false },
+          { label: "問題の明確化に戻る", correct: true },
         ],
         explanation: "ステップ1に戻ると、次の手が再び見えやすくなります。",
       },

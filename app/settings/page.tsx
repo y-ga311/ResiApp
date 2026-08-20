@@ -110,6 +110,16 @@ export default function SettingsPage() {
     setDepartment(profile.department);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.location.hash !== "#support") return;
+    const el = document.getElementById("support");
+    if (!el) return;
+    window.setTimeout(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  }, []);
+
   const handleSaveProfile = () => {
     const next: ProfileDraft = {
       school: school.trim(),
@@ -192,7 +202,7 @@ export default function SettingsPage() {
           </section>
 
           {/* 相談窓口 */}
-          <section className="flex flex-col gap-2">
+          <section id="support" className="flex flex-col gap-2 scroll-mt-4">
             <h2 className="text-[12px] font-bold text-t3 px-1">サポート</h2>
             <div className="bg-card rounded-3xl overflow-hidden shadow-sm">
               <div className="px-4 py-3.5 flex items-center gap-3 border-b border-stroke">
@@ -273,8 +283,8 @@ export default function SettingsPage() {
           <section className="flex flex-col gap-2">
             <h2 className="text-[12px] font-bold text-t3 px-1">その他</h2>
             <div className="bg-card rounded-3xl overflow-hidden shadow-sm">
-              <button
-                type="button"
+              <Link
+                href="/settings/about"
                 className="w-full flex items-center gap-3 px-4 py-4 active:bg-bg/60"
               >
                 <div className="w-10 h-10 rounded-xl bg-accent-lt flex items-center justify-center flex-shrink-0">
@@ -287,7 +297,7 @@ export default function SettingsPage() {
                   </p>
                 </div>
                 <ChevronRight size={18} className="text-t3 flex-shrink-0" />
-              </button>
+              </Link>
             </div>
           </section>
 

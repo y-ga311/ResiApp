@@ -104,8 +104,8 @@ export const SK5_SLIDES: Record<string, Slide[]> = {
         question: "睡眠記録で大切なのは？",
         options: [
           { label: "1日だけ精密に測る", correct: false },
-          { label: "ざっくりでも続ける", correct: true },
           { label: "記録せず我慢する", correct: false },
+          { label: "ざっくりでも続ける", correct: true },
         ],
         explanation: "継続できる粒度で続けることが改善につながります。",
       },
@@ -169,8 +169,8 @@ export const SK5_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "睡眠衛生の始め方として良いのは？",
         options: [
-          { label: "全部同時に完璧に変える", correct: false },
           { label: "変えやすい習慣を1つ選ぶ", correct: true },
+          { label: "全部同時に完璧に変える", correct: false },
           { label: "気にせず夜更かしする", correct: false },
         ],
         explanation: "小さな1変化の方が続き、効果も実感しやすいです。",
@@ -302,8 +302,8 @@ export const SK5_SLIDES: Record<string, Slide[]> = {
         question: "睡眠制限で大切なのは？",
         options: [
           { label: "極端に削るほど良い", correct: false },
-          { label: "無理のない範囲で効率を上げる", correct: true },
           { label: "昼に補って夜更かしする", correct: false },
+          { label: "無理のない範囲で効率を上げる", correct: true },
         ],
         explanation: "安全と継続が最優先。極端な制限は避けます。",
       },
@@ -367,8 +367,8 @@ export const SK5_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "入眠前に向いているのは？",
         options: [
-          { label: "激しい運動をすぐやる", correct: false },
           { label: "ゆっくり長い吐息の呼吸", correct: true },
+          { label: "激しい運動をすぐやる", correct: false },
           { label: "興奮する動画を見る", correct: false },
         ],
         explanation: "ゆるむ方向の呼吸や筋弛緩が入眠を助けます。",
@@ -500,8 +500,8 @@ export const SK5_SLIDES: Record<string, Slide[]> = {
         question: "体内時計を整えやすい行動は？",
         options: [
           { label: "毎日違う時間に起きる", correct: false },
-          { label: "毎朝だいたい同じ時間に起き、光を浴びる", correct: true },
           { label: "昼に長い昼寝をする", correct: false },
+          { label: "毎朝だいたい同じ時間に起き、光を浴びる", correct: true },
         ],
         explanation: "起床の一定化と朝の光が基本です。",
       },
@@ -565,8 +565,8 @@ export const SK5_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "夜の眠りを守りやすいのは？",
         options: [
-          { label: "寝る直前までSNS", correct: false },
           { label: "ベッドに入ったら画面オフを目標にする", correct: true },
+          { label: "寝る直前までSNS", correct: false },
           { label: "寝酒で無理やり眠る", correct: false },
         ],
         explanation: "刺激と質を下げる要因を減らすのが基本です。",

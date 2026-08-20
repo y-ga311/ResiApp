@@ -90,20 +90,20 @@ function CheckQuestionContent() {
         </div>
 
         {crisis && (
-          <div className="w-full rounded-2xl border-2 border-[#FCA5A5] bg-[#FEF2F2] p-4 flex flex-col gap-2">
+          <div className="w-full rounded-2xl border-2 border-[#FCA5A5] bg-[#FEF2F2] p-4 flex flex-col gap-3">
             <div className="flex items-center gap-2 text-[#DC2626]">
               <AlertTriangle size={18} />
               <span className="text-[13px] font-bold">つらい気持ちがあるとき</span>
             </div>
             <p className="text-[12px] text-t2 leading-relaxed">
-              ひとりで抱えなくて大丈夫です。必要なら相談窓口へつながってください。
+              ひとりで抱えなくて大丈夫です。必要ならサポートの連絡先を確認してください。
             </p>
-            <p className="text-[12px] font-semibold text-t1">
-              よりそいホットライン 0120-279-338（24時間）
-            </p>
-            <p className="text-[12px] font-semibold text-t1">
-              いのちの電話 0120-783-556
-            </p>
+            <Link
+              href="/settings#support"
+              className="w-full flex items-center justify-center h-[44px] rounded-[22px] border-2 border-[#DC2626] bg-white text-[#111827] text-[13px] font-bold"
+            >
+              サポートの連絡先を見る
+            </Link>
           </div>
         )}
 

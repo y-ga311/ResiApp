@@ -33,8 +33,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "行動活性化では、どちらが正しい？",
         options: [
-          { label: "やる気が出てから行動する", correct: false },
           { label: "行動することでやる気が出る", correct: true },
+          { label: "やる気が出てから行動する", correct: false },
           { label: "まず計画を完璧に立てる", correct: false },
         ],
         explanation: "「行動 → 気分が変わる → またやる気が出る」という好循環を作るのが行動活性化の考え方です。気分が変わるのを待たなくていいんです！",
@@ -154,8 +154,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
         question: "活動日記に書くのはどれ？",
         options: [
           { label: "「良い行動」だけを記録する", correct: false },
-          { label: "普通の行動も含めて記録する", correct: true },
           { label: "気分が10点のときだけ書く", correct: false },
+          { label: "普通の行動も含めて記録する", correct: true },
         ],
         explanation: "「良い行動」だけじゃなく、ゴロゴロしていた時間も記録するのが大切です。全体のパターンが見えてくるからです。",
       },
@@ -213,8 +213,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "活動リストには何を入れるべき？",
         options: [
-          { label: "楽しめると確信できるものだけ", correct: false },
           { label: "小さいものでも、不安なものでも入れていい", correct: true },
+          { label: "楽しめると確信できるものだけ", correct: false },
           { label: "お金がかかるものは入れない", correct: false },
         ],
         explanation: "「大したことない」と思うことも、「楽しめるか不安」なものも全部入れてOK。特に「すぐできる小さいもの」が実際には一番使いやすいです。",
@@ -334,8 +334,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
         question: "ルーティンが崩れた日はどうする？",
         options: [
           { label: "自分を責めて反省する", correct: false },
-          { label: "次の日にリセットすればOK", correct: true },
           { label: "もう諦めてルーティンをやめる", correct: false },
+          { label: "次の日にリセットすればOK", correct: true },
         ],
         explanation: "崩れた日があっても、次の日にリセットすればOKです。「完璧に守る」より「崩れても続ける」の方がずっと大切です。",
       },
@@ -393,8 +393,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "「人と話すのが億劫…」と感じるのは？",
         options: [
-          { label: "ただのわがまま", correct: false },
           { label: "落ち込みの症状のひとつ", correct: true },
+          { label: "ただのわがまま", correct: false },
           { label: "性格の問題", correct: false },
         ],
         explanation: "「人と話すのが億劫」「どうせ迷惑になる」と感じるのは、落ち込みの典型的な症状です。自分を責めずに、まず小さな一歩だけ踏み出してみましょう。",
@@ -514,8 +514,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
         question: "「5分だけやってみる」ルールの効果は？",
         options: [
           { label: "5分では何も変わらない", correct: false },
-          { label: "始めることで脳がやる気を出し始める（作業興奮）", correct: true },
           { label: "5分では達成感が得られない", correct: false },
+          { label: "始めることで脳がやる気を出し始める（作業興奮）", correct: true },
         ],
         explanation: "「作業興奮」という心理現象で、始めることで脳がやる気を出し始めます。「5分だけ」と決めて始めると、多くの場合そのまま続けられます。",
       },
@@ -566,8 +566,8 @@ export const SK1_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "行動活性化でいちばん大切なことは？",
         options: [
-          { label: "大きな行動を完璧にやり切ること", correct: false },
           { label: "小さな行動を続けて気分の好循環を作ること", correct: true },
+          { label: "大きな行動を完璧にやり切ること", correct: false },
           { label: "毎日必ず計画通りに行動すること", correct: false },
         ],
         explanation: "小さな行動を続けることで気分の好循環が生まれます。完璧じゃなくていい。「少しやれた」を積み重ねることが、長期的な変化につながります。",

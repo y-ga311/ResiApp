@@ -94,8 +94,8 @@ export const SK2_SLIDES: Record<string, Slide[]> = {
         question: "自動思考を捕まえる良いタイミングは？",
         options: [
           { label: "1週間あとでゆっくり思い出す", correct: false },
-          { label: "気持ちが動いた直後", correct: true },
           { label: "考えが消えてから", correct: false },
+          { label: "気持ちが動いた直後", correct: true },
         ],
         explanation: "気持ちが動いた直後がいちばん捕まえやすいです。",
       },
@@ -153,8 +153,8 @@ export const SK2_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "「一度失敗したから、もう無理」に近い歪みは？",
         options: [
-          { label: "心の読みすぎ", correct: false },
           { label: "過度な一般化", correct: true },
+          { label: "心の読みすぎ", correct: false },
           { label: "べき思考", correct: false },
         ],
         explanation: "一度の出来事を全体に広げるのが過度な一般化です。",
@@ -213,8 +213,8 @@ export const SK2_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "「緊張した＝絶対失敗する」に近いのは？",
         options: [
-          { label: "感情的決めつけ", correct: true },
           { label: "過度な一般化", correct: false },
+          { label: "感情的決めつけ", correct: true },
           { label: "心の読みすぎ", correct: false },
         ],
         explanation: "感情をそのまま事実のように扱うのが感情的決めつけです。",
@@ -274,8 +274,8 @@ export const SK2_SLIDES: Record<string, Slide[]> = {
         question: "パターン発見で大切なのは？",
         options: [
           { label: "自分を責めること", correct: false },
-          { label: "よく出るクセに気づくこと", correct: true },
           { label: "クセを完全に消すこと", correct: false },
+          { label: "よく出るクセに気づくこと", correct: true },
         ],
         explanation: "まずは気づき。責めずに観察することが変化の土台です。",
       },
@@ -333,8 +333,8 @@ export const SK2_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "証拠集めの目的は？",
         options: [
-          { label: "自分を論破して黙らせる", correct: false },
           { label: "一方的な見方を、公平に近づける", correct: true },
+          { label: "自分を論破して黙らせる", correct: false },
           { label: "ポジティブに無理に塗り替える", correct: false },
         ],
         explanation: "無理な明るさではなく、偏りを減らすのが目的です。",
@@ -454,8 +454,8 @@ export const SK2_SLIDES: Record<string, Slide[]> = {
         question: "良いバランス思考に近いのは？",
         options: [
           { label: "全部うまくいくに決まってる", correct: false },
-          { label: "今回は失敗した。次は準備時間を増やそう", correct: true },
           { label: "自分は価値がない", correct: false },
+          { label: "今回は失敗した。次は準備時間を増やそう", correct: true },
         ],
         explanation: "事実を認めつつ、次の行動につながる考えがバランス思考です。",
       },
@@ -513,8 +513,8 @@ export const SK2_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "コアビリーフへの向き合い方として良いのは？",
         options: [
-          { label: "一気に根こそぎ消そうとする", correct: false },
           { label: "気づき、少しずつ柔軟な表現に変える", correct: true },
+          { label: "一気に根こそぎ消そうとする", correct: false },
           { label: "無視して考えない", correct: false },
         ],
         explanation: "深い信念は時間がかかります。少しずつ柔軟化していくのが現実的です。",
@@ -634,8 +634,8 @@ export const SK2_SLIDES: Record<string, Slide[]> = {
         question: "セルフ・コンパッションに近いのは？",
         options: [
           { label: "失敗をなかったことにする", correct: false },
-          { label: "つらい事実は認めつつ、自分を責めすぎない", correct: true },
           { label: "努力をやめること", correct: false },
+          { label: "つらい事実は認めつつ、自分を責めすぎない", correct: true },
         ],
         explanation: "甘やかすのではなく、回復できる形で自分を支えることです。",
       },

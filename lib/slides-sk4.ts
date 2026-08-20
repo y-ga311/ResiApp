@@ -33,8 +33,8 @@ export const SK4_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "アサーティブに近いのは？",
         options: [
-          { label: "相手を論破して従わせる", correct: false },
           { label: "自分の気持ちを伝えつつ相手も尊重する", correct: true },
+          { label: "相手を論破して従わせる", correct: false },
           { label: "何も言わず我慢する", correct: false },
         ],
         explanation: "自分も相手も大切にするのがアサーティブです。",
@@ -163,8 +163,8 @@ export const SK4_SLIDES: Record<string, Slide[]> = {
         question: "アサーティブな断りに近いのは？",
         options: [
           { label: "無視する", correct: false },
-          { label: "感謝しつつ、できないことを伝える", correct: true },
           { label: "怒って拒絶する", correct: false },
+          { label: "感謝しつつ、できないことを伝える", correct: true },
         ],
         explanation: "相手を尊重しつつ、自分の境界線を示すのがポイントです。",
       },
@@ -228,8 +228,8 @@ export const SK4_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "DESCで最初に伝えるとよいのは？",
         options: [
-          { label: "相手の性格批判", correct: false },
           { label: "事実の描写", correct: true },
+          { label: "相手の性格批判", correct: false },
           { label: "怒鳴る", correct: false },
         ],
         explanation: "まず事実（Describe）から入ると、対立が増えにくいです。",
@@ -361,8 +361,8 @@ export const SK4_SLIDES: Record<string, Slide[]> = {
         question: "Iメッセージに近いのは？",
         options: [
           { label: "お前が悪い", correct: false },
-          { label: "予定が変わると不安になる", correct: true },
           { label: "常識的に考えておかしい", correct: false },
+          { label: "予定が変わると不安になる", correct: true },
         ],
         explanation: "自分の感情を主語にするのがIメッセージです。",
       },
@@ -426,8 +426,8 @@ export const SK4_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "批判を受けたとき最初に良いのは？",
         options: [
-          { label: "すぐに言い返す", correct: false },
           { label: "一呼吸して要点を確認する", correct: true },
+          { label: "すぐに言い返す", correct: false },
           { label: "完全に無視し続ける", correct: false },
         ],
         explanation: "感情が落ち着いてから返すと、建設的になりやすいです。",
@@ -559,8 +559,8 @@ export const SK4_SLIDES: Record<string, Slide[]> = {
         question: "アサーティブな共感の使い方は？",
         options: [
           { label: "相手に合わせて我慢するだけ", correct: false },
-          { label: "相手を理解したうえで自分の希望も伝える", correct: true },
           { label: "相手の気持ちを無視する", correct: false },
+          { label: "相手を理解したうえで自分の希望も伝える", correct: true },
         ],
         explanation: "共感と自己主張の両立がポイントです。",
       },
@@ -616,8 +616,8 @@ export const SK4_SLIDES: Record<string, Slide[]> = {
       quiz: {
         question: "最初の実践として良いのは？",
         options: [
-          { label: "いきなり大きな対立で使う", correct: false },
           { label: "小さな場面で1回だけ試す", correct: true },
+          { label: "いきなり大きな対立で使う", correct: false },
           { label: "完璧になるまで話さない", correct: false },
         ],
         explanation: "小さな成功体験から始めると続きやすいです。",
