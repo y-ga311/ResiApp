@@ -27,13 +27,13 @@ export default function TabBar() {
             >
               <Icon
                 size={22}
-                color={isActive ? "#1B3A6B" : "#94A3B8"}
+                color={isActive ? "#E8895B" : "#A89080"}
                 strokeWidth={isActive ? 2.5 : 1.8}
               />
               <span
                 className="text-[10px] leading-none"
                 style={{
-                  color: isActive ? "#1B3A6B" : "#94A3B8",
+                  color: isActive ? "#E8895B" : "#A89080",
                   fontWeight: isActive ? 700 : 400,
                 }}
               >

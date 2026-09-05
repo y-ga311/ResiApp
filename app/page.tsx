@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 const FEATURES = [
+  "毎日の体調と気圧の目安がわかる",
   "セルフチェックで心の健康状態がわかる",
   "1日5分からトレーニングができる",
-  "レジリエンスの成長度を確認できる",
 ];
 
 export default function WelcomePage() {

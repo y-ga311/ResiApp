@@ -11,8 +11,16 @@ import {
   Info,
   School,
   BookOpen,
+  MapPin,
+  CloudSun,
 } from "lucide-react";
 import { USER } from "@/lib/mock-data";
+import {
+  WEATHER_REGIONS,
+  loadWeatherPrefs,
+  saveWeatherPrefs,
+  type WeatherPrefs,
+} from "@/lib/weather";
 
 const PROFILE_KEY = "resiapp.settings.profile";
 
@@ -102,12 +110,18 @@ export default function SettingsPage() {
   const [school, setSchool] = useState("");
   const [department, setDepartment] = useState("");
   const [saved, setSaved] = useState(false);
+  const [weatherPrefs, setWeatherPrefs] = useState<WeatherPrefs>({
+    regionKey: "osaka",
+    enabled: true,
+  });
+  const [weatherSaved, setWeatherSaved] = useState(false);
   const initial = USER.nickname.replace(/さん$/, "").slice(0, 1) || "？";
 
   useEffect(() => {
     const profile = loadProfile();
     setSchool(profile.school);
     setDepartment(profile.department);
+    setWeatherPrefs(loadWeatherPrefs());
   }, []);
 
   useEffect(() => {
@@ -130,6 +144,13 @@ export default function SettingsPage() {
     window.setTimeout(() => setSaved(false), 1800);
   };
 
+  const persistWeather = (next: WeatherPrefs) => {
+    setWeatherPrefs(next);
+    saveWeatherPrefs(next);
+    setWeatherSaved(true);
+    window.setTimeout(() => setWeatherSaved(false), 1600);
+  };
+
   return (
     <div className="h-full flex flex-col overflow-hidden bg-bg">
       <div className="flex-shrink-0 flex items-center gap-3 px-4 py-4 bg-card shadow-sm">
@@ -141,7 +162,6 @@ export default function SettingsPage() {
 
       <div className="flex-1 overflow-y-auto">
         <div className="flex flex-col gap-6 px-4 py-5 pb-8">
-          {/* アカウント */}
           <section className="flex flex-col gap-2">
             <h2 className="text-[12px] font-bold text-t3 px-1">アカウント</h2>
             <div className="bg-card rounded-3xl p-5 flex items-center gap-4 shadow-sm">
@@ -161,7 +181,6 @@ export default function SettingsPage() {
             </div>
           </section>
 
-          {/* 所属登録 */}
           <section className="flex flex-col gap-2">
             <h2 className="text-[12px] font-bold text-t3 px-1">所属の登録</h2>
             <div className="bg-card rounded-3xl p-4 shadow-sm flex flex-col gap-4">
@@ -201,7 +220,80 @@ export default function SettingsPage() {
             </div>
           </section>
 
-          {/* 相談窓口 */}
+          <section className="flex flex-col gap-2">
+            <h2 className="text-[12px] font-bold text-t3 px-1">天気・気圧</h2>
+            <div className="bg-card rounded-3xl p-4 shadow-sm flex flex-col gap-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="w-10 h-10 rounded-xl bg-accent-lt flex items-center justify-center flex-shrink-0">
+                    <CloudSun size={18} className="text-accent" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[14px] font-semibold text-t1">
+                      ホームに天気を表示
+                    </p>
+                    <p className="text-[11px] text-t3 mt-0.5">
+                      診断ではなく環境の目安です
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={weatherPrefs.enabled}
+                  onClick={() =>
+                    persistWeather({
+                      ...weatherPrefs,
+                      enabled: !weatherPrefs.enabled,
+                    })
+                  }
+                  className="w-12 h-7 rounded-full transition-colors flex-shrink-0 relative"
+                  style={{
+                    backgroundColor: weatherPrefs.enabled
+                      ? "#E8895B"
+                      : "#F0E4D8",
+                  }}
+                >
+                  <span
+                    className="absolute top-0.5 w-6 h-6 rounded-full bg-white shadow transition-all"
+                    style={{
+                      left: weatherPrefs.enabled ? 22 : 2,
+                    }}
+                  />
+                </button>
+              </div>
+
+              <label className="flex flex-col gap-1.5">
+                <span className="text-[12px] font-semibold text-t2 flex items-center gap-1.5">
+                  <MapPin size={14} className="text-accent" />
+                  表示地域
+                </span>
+                <select
+                  value={weatherPrefs.regionKey}
+                  onChange={(e) =>
+                    persistWeather({
+                      ...weatherPrefs,
+                      regionKey: e.target.value,
+                    })
+                  }
+                  className="h-12 rounded-2xl border-2 border-stroke bg-bg px-4 text-[15px] font-medium text-t1 focus:outline-none focus:border-accent"
+                >
+                  {WEATHER_REGIONS.map((r) => (
+                    <option key={r.key} value={r.key}>
+                      {r.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              {weatherSaved && (
+                <p className="text-[12px] font-semibold text-accent">
+                  天気設定を保存しました
+                </p>
+              )}
+            </div>
+          </section>
+
           <section id="support" className="flex flex-col gap-2 scroll-mt-4">
             <h2 className="text-[12px] font-bold text-t3 px-1">サポート</h2>
             <div className="bg-card rounded-3xl overflow-hidden shadow-sm">
@@ -254,7 +346,10 @@ export default function SettingsPage() {
                               key={`${group.name}-${item.label}`}
                               href={item.href}
                               {...(external
-                                ? { target: "_blank", rel: "noopener noreferrer" }
+                                ? {
+                                    target: "_blank",
+                                    rel: "noopener noreferrer",
+                                  }
                                 : {})}
                               className="rounded-2xl bg-bg px-3 py-2.5 flex items-start justify-between gap-2"
                             >
@@ -279,7 +374,6 @@ export default function SettingsPage() {
             </div>
           </section>
 
-          {/* その他 */}
           <section className="flex flex-col gap-2">
             <h2 className="text-[12px] font-bold text-t3 px-1">その他</h2>
             <div className="bg-card rounded-3xl overflow-hidden shadow-sm">
@@ -291,7 +385,9 @@ export default function SettingsPage() {
                   <Info size={20} className="text-accent" />
                 </div>
                 <div className="flex-1 text-left min-w-0">
-                  <p className="text-[14px] font-semibold text-t1">アプリについて</p>
+                  <p className="text-[14px] font-semibold text-t1">
+                    アプリについて
+                  </p>
                   <p className="text-[12px] text-t3 mt-0.5">
                     セルフチェックは医療診断ではありません
                   </p>
@@ -305,8 +401,8 @@ export default function SettingsPage() {
             type="button"
             className="w-full flex items-center justify-center gap-2 bg-card rounded-2xl px-4 py-4 shadow-sm"
           >
-            <LogOut size={18} color="#FB923C" />
-            <span className="text-[14px] font-semibold text-[#FB923C]">
+            <LogOut size={18} color="#E8895B" />
+            <span className="text-[14px] font-semibold text-accent">
               ログアウト
             </span>
           </button>

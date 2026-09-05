@@ -1,10 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Heart, Music2 } from "lucide-react";
 import TabBar from "@/components/TabBar";
 import AppHeader from "@/components/AppHeader";
 import { SKILLS, CHECK_HISTORY } from "@/lib/mock-data";
+import {
+  BODY_TAG_OPTIONS,
+  recentConditionSeries,
+  type ConditionLog,
+} from "@/lib/condition-storage";
+import { pressureAlertCopy, type PressureAlert } from "@/lib/weather";
 
 type MetricKey = "phq" | "gad" | "psqi";
 
@@ -48,6 +54,14 @@ const METRICS: {
 
 const WEEK_TITLES = ["3週前", "2週前", "1週前", "今週"];
 
+const MOOD_DOT: Record<number, string> = {
+  5: "#FBBF24",
+  4: "#10B981",
+  3: "#E8895B",
+  2: "#FB923C",
+  1: "#C45C2A",
+};
+
 function MetricIcon({
   kind,
   color,
@@ -72,17 +86,51 @@ function MetricIcon({
     return <Music2 size={size} color={color} strokeWidth={2.4} />;
   }
   return (
-    <Heart size={size} color={color} strokeWidth={2.4} fill={color} fillOpacity={0.15} />
+    <Heart
+      size={size}
+      color={color}
+      strokeWidth={2.4}
+      fill={color}
+      fillOpacity={0.15}
+    />
   );
+}
+
+function formatShortDate(isoDate: string) {
+  const [, m, d] = isoDate.split("-");
+  return `${Number(m)}/${Number(d)}`;
+}
+
+function tagLabels(log: ConditionLog) {
+  return log.bodyTags
+    .map((t) => BODY_TAG_OPTIONS.find((o) => o.key === t)?.label)
+    .filter(Boolean)
+    .join("・");
 }
 
 export default function GrowthPage() {
   const [activeKey, setActiveKey] = useState<MetricKey>("phq");
+  const [conditionSeries, setConditionSeries] = useState<
+    { date: string; log: ConditionLog | null }[]
+  >([]);
   const active = METRICS.find((m) => m.key === activeKey) ?? METRICS[0];
   const values = CHECK_HISTORY.map((h) => h[active.key]);
   const first = values[0] ?? 0;
   const latest = values[values.length - 1] ?? 0;
-  const improvedBy = first - latest; // 低いほど良い
+  const improvedBy = first - latest;
+
+  useEffect(() => {
+    setConditionSeries(recentConditionSeries(14));
+  }, []);
+
+  const logged = conditionSeries.filter((s) => s.log);
+  const cautionOverlap = logged.filter(
+    (s) =>
+      s.log &&
+      (s.log.pressureAlert === "caution" || s.log.pressureAlert === "mild") &&
+      (s.log.bodyTags.includes("headache") ||
+        s.log.bodyTags.includes("fatigue"))
+  );
 
   return (
     <div className="h-full flex flex-col overflow-hidden bg-bg">
@@ -97,10 +145,10 @@ export default function GrowthPage() {
             </p>
           </div>
 
-          {/* 3項目の切り替え */}
           <div className="grid grid-cols-3 gap-2">
             {METRICS.map((metric) => {
-              const latestVal = CHECK_HISTORY[CHECK_HISTORY.length - 1][metric.key];
+              const latestVal =
+                CHECK_HISTORY[CHECK_HISTORY.length - 1][metric.key];
               const startVal = CHECK_HISTORY[0][metric.key];
               const better = startVal - latestVal;
               const selected = metric.key === activeKey;
@@ -113,7 +161,9 @@ export default function GrowthPage() {
                   style={{
                     backgroundColor: selected ? metric.bg : "#FFFFFF",
                     borderColor: selected ? metric.color : "transparent",
-                    boxShadow: selected ? "none" : "0 1px 2px rgba(15,23,42,0.06)",
+                    boxShadow: selected
+                      ? "none"
+                      : "0 1px 2px rgba(74,51,33,0.06)",
                   }}
                 >
                   <MetricIcon kind={metric.icon} color={metric.color} />
@@ -132,25 +182,31 @@ export default function GrowthPage() {
                   <span
                     className="text-[10px] font-semibold"
                     style={{
-                      color: better > 0 ? "#27AE76" : better < 0 ? "#EF4444" : "#94A3B8",
+                      color:
+                        better > 0
+                          ? "#27AE76"
+                          : better < 0
+                            ? "#EF4444"
+                            : "#A89080",
                     }}
                   >
-                    {better > 0 ? `↓${better}` : better < 0 ? `↑${Math.abs(better)}` : "→0"}
+                    {better > 0
+                      ? `↓${better}`
+                      : better < 0
+                        ? `↑${Math.abs(better)}`
+                        : "→0"}
                   </span>
                 </button>
               );
             })}
           </div>
 
-          {/* 選択中の詳細グラフ（1つだけ大きく） */}
           <div
             className="rounded-3xl p-5 flex flex-col gap-5 shadow-sm"
             style={{ backgroundColor: active.bg }}
           >
             <div className="flex items-center gap-3">
-              <div
-                className="w-11 h-11 rounded-2xl bg-white/80 flex items-center justify-center flex-shrink-0"
-              >
+              <div className="w-11 h-11 rounded-2xl bg-white/80 flex items-center justify-center flex-shrink-0">
                 <MetricIcon kind={active.icon} color={active.color} size={22} />
               </div>
               <div className="min-w-0 flex-1">
@@ -177,7 +233,7 @@ export default function GrowthPage() {
                     >
                       <span
                         className="text-[16px] font-bold leading-none"
-                        style={{ color: isLatest ? active.color : "#64748B" }}
+                        style={{ color: isLatest ? active.color : "#6B5344" }}
                       >
                         {value}
                       </span>
@@ -193,7 +249,7 @@ export default function GrowthPage() {
                       </div>
                       <span
                         className="text-[12px] font-semibold"
-                        style={{ color: isLatest ? active.color : "#94A3B8" }}
+                        style={{ color: isLatest ? active.color : "#A89080" }}
                       >
                         {WEEK_TITLES[i] ?? `W${i + 1}`}
                       </span>
@@ -214,7 +270,125 @@ export default function GrowthPage() {
             </div>
           </div>
 
-          {/* スキル */}
+          <div className="flex flex-col gap-3">
+            <div>
+              <h2 className="text-[15px] font-bold text-t1">最近の体調</h2>
+              <p className="text-[12px] text-t3 mt-0.5">
+                ホームで記録した気分の推移（直近14日）
+              </p>
+            </div>
+
+            <div className="bg-card rounded-3xl p-4 shadow-sm flex flex-col gap-4">
+              <div className="flex items-end justify-between gap-1 h-28 px-1">
+                {conditionSeries.map(({ date, log }) => {
+                  const score = log?.moodScore ?? 0;
+                  const h = score > 0 ? 12 + score * 14 : 8;
+                  const alert = log?.pressureAlert as
+                    | PressureAlert
+                    | null
+                    | undefined;
+                  const alertMark =
+                    alert === "caution" || alert === "mild";
+                  return (
+                    <div
+                      key={date}
+                      className="flex flex-col items-center gap-1 flex-1 min-w-0"
+                      title={date}
+                    >
+                      <div className="h-[90px] w-full flex items-end justify-center">
+                        <div
+                          className="w-[70%] max-w-[18px] rounded-t-md"
+                          style={{
+                            height: h,
+                            backgroundColor: score
+                              ? MOOD_DOT[score] ?? "#E8895B"
+                              : "#F0E4D8",
+                            opacity: score ? 1 : 0.55,
+                          }}
+                        />
+                      </div>
+                      <span
+                        className="text-[9px] font-semibold leading-none"
+                        style={{ color: alertMark ? "#C45C2A" : "#A89080" }}
+                      >
+                        {formatShortDate(date).split("/")[1]}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <p className="text-[11px] text-t3 leading-snug">
+                棒の高さ＝気分（高いほど良い）。日付がオレンジの日は気圧注意日です。
+              </p>
+
+              {logged.length === 0 ? (
+                <p className="text-[13px] text-t2 text-center py-2">
+                  まだ体調記録がありません。ホームから残してみよう。
+                </p>
+              ) : (
+                <div className="flex flex-col gap-2 max-h-48 overflow-y-auto">
+                  {[...logged]
+                    .reverse()
+                    .slice(0, 7)
+                    .map(({ date, log }) => {
+                      if (!log) return null;
+                      const tags = tagLabels(log);
+                      const alert = log.pressureAlert;
+                      const alertLabel =
+                        alert && alert !== "normal"
+                          ? pressureAlertCopy(alert).title
+                          : null;
+                      return (
+                        <div
+                          key={date}
+                          className="rounded-2xl bg-bg px-3 py-2.5 flex flex-col gap-0.5"
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-[13px] font-bold text-t1">
+                              {formatShortDate(date)}
+                            </span>
+                            <span
+                              className="text-[12px] font-bold"
+                              style={{
+                                color: MOOD_DOT[log.moodScore] ?? "#E8895B",
+                              }}
+                            >
+                              気分 {log.moodScore}/5
+                            </span>
+                          </div>
+                          {tags ? (
+                            <p className="text-[11px] text-t2">{tags}</p>
+                          ) : null}
+                          {log.note ? (
+                            <p className="text-[11px] text-t3">{log.note}</p>
+                          ) : null}
+                          {alertLabel ? (
+                            <p className="text-[11px] font-semibold text-accent">
+                              {alertLabel}
+                            </p>
+                          ) : null}
+                        </div>
+                      );
+                    })}
+                </div>
+              )}
+
+              {cautionOverlap.length > 0 && (
+                <div className="rounded-2xl bg-accent-lt px-3 py-2.5">
+                  <p className="text-[12px] font-bold text-accent">
+                    振り返りヒント
+                  </p>
+                  <p className="text-[12px] text-t2 mt-0.5 leading-snug">
+                    気圧注意の日に頭痛・だるさを付けた記録が{" "}
+                    {cautionOverlap.length}{" "}
+                    日あります。無理のサインかも。
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
           <div className="flex flex-col gap-3">
             <h2 className="text-[15px] font-bold text-t1">スキルの進み具合</h2>
             <div className="bg-card rounded-3xl p-4 shadow-sm flex flex-col gap-4">

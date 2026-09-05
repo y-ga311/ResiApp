@@ -17,7 +17,7 @@ html {
 body {
   height: 100%;
   margin: 0;
-  background-color: #F0F4FF;
+  background-color: #FFF8EE;
   overflow: hidden;
 }
 
@@ -27,7 +27,7 @@ body {
   height: 100dvh;           /* exact viewport height — no overflow */
   display: flex;
   flex-direction: column;
-  background-color: #F0F4FF;
+  background-color: #FFF8EE;
   overflow: hidden;
   position: relative;
 }
@@ -38,7 +38,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #0f172a;
+    background-color: #3D2A1F;
     overflow: auto;
     padding: 24px 0;
   }
@@ -49,8 +49,8 @@ body {
     height: min(844px, calc(100vh - 48px));
     border-radius: 48px;
     box-shadow:
-      0 0 0 8px #1e293b,
-      0 40px 80px rgba(0, 0, 0, 0.5);
+      0 0 0 8px #5C4033,
+      0 40px 80px rgba(61, 42, 31, 0.55);
     overflow: hidden;
   }
 }
@@ -73,4 +73,3 @@ body {
 .animate-bounce-slow {
   animation: bounceSlow 2.4s ease-in-out infinite;
 }
-

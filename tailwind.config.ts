@@ -9,16 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        accent:     "#1B3A6B",
-        "accent-lt": "#DBE8FF",
-        bg:         "#F0F4FF",
+        // harema風の暖かなオレンジ／クリーム基調
+        accent:     "#E8895B",
+        "accent-lt": "#FFE8D6",
+        bg:         "#FFF8EE",
         card:       "#FFFFFF",
-        t1:         "#1A1F2E",
-        t2:         "#475569",
-        t3:         "#94A3B8",
+        t1:         "#4A3321",
+        t2:         "#6B5344",
+        t3:         "#A89080",
         good:       "#27AE76",
         warn:       "#FBBF24",
-        stroke:     "#E2E8F0",
+        stroke:     "#F0E4D8",
         sk1:        "#10B981",
         sk2:        "#818CF8",
         sk3:        "#FB923C",

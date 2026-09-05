@@ -2,8 +2,10 @@
 ## ResiApp — 学生向けレジリエンス強化アプリ
 
 **作成日：** 2026年7月17日  
-**バージョン：** 1.0  
-**備考：** Supabase（PostgreSQL）での実装を前提とした設計。Supabase連携は後工程。
+**更新日：** 2026年9月5日  
+**バージョン：** 1.1  
+**備考：** Supabase（PostgreSQL）での実装を前提とした設計。Supabase連携は後工程。  
+**v1.1 追記：** 日常体調記録（`condition_logs`）と天気スナップショット（`weather_snapshots`）— 要件定義書 F07 対応
 
 ---
 
@@ -26,11 +28,14 @@
 | 1 | `users` | ユーザープロフィール |
 | 2 | `check_sessions` | セルフチェックの実施記録（1回分） |
 | 3 | `check_answers` | セルフチェックの各設問への回答 |
-| 4 | `mood_logs` | 毎日の気分記録 |
-| 5 | `lesson_completions` | レッスン完了記録 |
-| 6 | `work_answers` | レッスン内ワーク（テキスト入力）の記録 |
-| 7 | `user_badges` | 獲得バッジの記録 |
-| 8 | `notification_settings` | プッシュ通知設定 |
+| 4 | `mood_logs` | 毎日の気分記録（既存。F07では `condition_logs` へ拡張移行可） |
+| 5 | `weather_snapshots` | 取得した天気・気圧のスナップショット【F07】 |
+| 6 | `condition_logs` | 毎日の体調記録（気分＋身体タグ＋メモ）【F07】 |
+| 7 | `lesson_completions` | レッスン完了記録 |
+| 8 | `work_answers` | レッスン内ワーク（テキスト入力）の記録 |
+| 9 | `user_badges` | 獲得バッジの記録 |
+| 10 | `notification_settings` | プッシュ通知設定 |
+| 11 | `user_preferences` | 表示地域などユーザー設定【F07】 |
 
 ---
 
@@ -152,6 +157,108 @@ CREATE TABLE mood_logs (
 | `mood_score` | SMALLINT | moodの数値版。グラフ描画に使用 |
 | `date` | DATE | UNIQUE制約で1日1記録を保証 |
 
+> **移行方針（F07）：** 新規実装では `condition_logs` を正とする。既存 `mood_logs` がある場合は気分カラムを移行し、`mood_logs` は後方互換のため当面残してもよい。
+
+---
+
+### 2.4b `weather_snapshots` — 天気・気圧スナップショット（F07）
+
+API応答をそのまま個人ログに大量保存せず、**表示・注意判定に必要な要約**を保存する。  
+（`condition_logs` が参照するため、先に定義する。）
+
+```sql
+CREATE TABLE weather_snapshots (
+  id                UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id           UUID REFERENCES users(id) ON DELETE CASCADE, -- NULL可（地域共通キャッシュ運用時）
+  region_key        TEXT NOT NULL,          -- 例: 'osaka' / 'tokyo'
+  fetched_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
+  weather_code      TEXT,                   -- APIの天気コード or 簡易ラベル
+  temperature_c     NUMERIC(4,1),
+  humidity_pct      SMALLINT,
+  pressure_hpa      NUMERIC(6,1),           -- 現在気圧
+  pressure_delta_hpa NUMERIC(5,1),          -- 直近の変化（例: 24h差）。下降は負
+  pressure_alert    TEXT NOT NULL DEFAULT 'normal'
+                    CHECK (pressure_alert IN ('normal', 'mild', 'caution')),
+  source            TEXT NOT NULL DEFAULT 'open-meteo',
+  raw_summary       JSONB,                  -- デバッグ用の要約JSON（個人情報を含めない）
+  expires_at        TIMESTAMPTZ             -- キャッシュ期限
+);
+```
+
+| カラム | 型 | 説明 |
+|--------|-----|------|
+| `region_key` | TEXT | 表示地域のキー |
+| `pressure_hpa` | NUMERIC | 現在気圧 |
+| `pressure_delta_hpa` | NUMERIC | 変化量（実装で定義した窓：例 24時間） |
+| `pressure_alert` | TEXT | アプリ判定結果 |
+| `expires_at` | TIMESTAMPTZ | これ以降は再取得 |
+
+**pressure_alert 判定（初期案・チューニング前提）**
+```
+|pressure_delta_hpa| < 3     → normal
+3 ≤ |delta| < 6             → mild
+|delta| ≥ 6                 → caution
+（下降をより重視する場合は下降側の閾値を小さくする）
+```
+
+---
+
+### 2.4c `condition_logs` — 毎日の体調記録（F07）
+
+```sql
+CREATE TABLE condition_logs (
+  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id         UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  date            DATE NOT NULL DEFAULT CURRENT_DATE,
+  mood            TEXT NOT NULL
+                  CHECK (mood IN ('great', 'good', 'okay', 'bad', 'rough')),
+  mood_score      SMALLINT NOT NULL CHECK (mood_score BETWEEN 1 AND 5),
+  -- 身体タグ（複数可）。空配列可
+  body_tags       TEXT[] NOT NULL DEFAULT '{}',
+  note            TEXT,
+  -- 記録時点の気圧注意レベル（天気API判定結果のコピー。任意）
+  pressure_alert  TEXT
+                  CHECK (pressure_alert IS NULL OR pressure_alert IN ('normal', 'mild', 'caution')),
+  weather_snapshot_id UUID REFERENCES weather_snapshots(id) ON DELETE SET NULL,
+  logged_at       TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+  UNIQUE (user_id, date)
+);
+```
+
+| カラム | 型 | 説明 |
+|--------|-----|------|
+| `mood` / `mood_score` | TEXT / SMALLINT | ホームの5段階気分と同一定義 |
+| `body_tags` | TEXT[] | 許可値例：`headache`, `fatigue`, `sleepy`, `stiff_shoulder`, `stomach`, `other` |
+| `note` | TEXT | 任意の一言メモ |
+| `pressure_alert` | TEXT | 記録時の注意レベル（後から振り返り用に保存） |
+| `weather_snapshot_id` | UUID | 紐づく天気スナップショット（任意） |
+
+**body_tags のアプリ側マスタ**
+
+| 値 | 表示 |
+|----|------|
+| `headache` | 頭痛 |
+| `fatigue` | だるさ |
+| `sleepy` | 眠気 |
+| `stiff_shoulder` | 肩こり |
+| `stomach` | 胃の不調 |
+| `other` | その他 |
+
+---
+
+### 2.4d `user_preferences` — ユーザー設定（F07 含む）
+
+```sql
+CREATE TABLE user_preferences (
+  user_id            UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+  weather_region_key TEXT NOT NULL DEFAULT 'osaka',
+  weather_enabled    BOOLEAN NOT NULL DEFAULT true,
+  updated_at         TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+```
+
 ---
 
 ### 2.5 `lesson_completions` — レッスン完了記録
@@ -249,21 +356,26 @@ CREATE TABLE notification_settings (
 ```
 users
   ├─< check_sessions ──< check_answers
-  ├─< mood_logs
+  ├─< mood_logs                    （既存・互換）
+  ├─< condition_logs ──> weather_snapshots   （F07）
   ├─< lesson_completions
   ├─< work_answers
   ├─< user_badges
-  └── notification_settings  (1:1)
+  ├── notification_settings  (1:1)
+  └── user_preferences       (1:1, F07)
 ```
 
 **主なリレーション**
 - `users` 1 : N `check_sessions`（1ユーザーが複数回チェック）
 - `check_sessions` 1 : N `check_answers`（1セッションに複数回答）
 - `users` 1 : N `mood_logs`（1日1記録）
+- `users` 1 : N `condition_logs`（1日1体調記録）
+- `condition_logs` N : 1 `weather_snapshots`（任意紐付け）
 - `users` 1 : N `lesson_completions`（1レッスンにつき1記録）
 - `users` 1 : N `work_answers`
 - `users` 1 : N `user_badges`
 - `users` 1 : 1 `notification_settings`
+- `users` 1 : 1 `user_preferences`
 
 ---
 
@@ -277,6 +389,17 @@ CREATE INDEX idx_check_sessions_user_date
 -- 気分ログのカレンダー表示
 CREATE INDEX idx_mood_logs_user_date
   ON mood_logs (user_id, date DESC);
+
+-- 体調ログ（F07）
+CREATE INDEX idx_condition_logs_user_date
+  ON condition_logs (user_id, date DESC);
+
+CREATE INDEX idx_condition_logs_pressure
+  ON condition_logs (user_id, pressure_alert, date DESC);
+
+-- 天気スナップショット（地域＋取得時刻）
+CREATE INDEX idx_weather_snapshots_region_fetched
+  ON weather_snapshots (region_key, fetched_at DESC);
 
 -- レッスン進捗のスキル別集計
 CREATE INDEX idx_lesson_completions_user_skill
@@ -304,6 +427,9 @@ Supabase連携時に設定する行レベルセキュリティの基本方針。
 | `check_sessions` | 本人のみ自分の行をSELECT/INSERT可能。UPDATEは原則禁止 |
 | `check_answers` | 本人のみ自分の行をSELECT/INSERT可能 |
 | `mood_logs` | 本人のみ自分の行をSELECT/INSERT可能 |
+| `condition_logs` | 本人のみ自分の行をSELECT/INSERT/UPDATE可能 |
+| `weather_snapshots` | 本人紐付け行は本人のみ。地域共通キャッシュ運用時は読み取り専用ポリシーを別途定義 |
+| `user_preferences` | 本人のみSELECT/UPDATE可能 |
 | `lesson_completions` | 本人のみ自分の行をSELECT/INSERT可能 |
 | `work_answers` | 本人のみ自分の行をSELECT/INSERT/UPDATE可能 |
 | `user_badges` | 本人はSELECTのみ。INSERTはサーバー側関数（Supabase Edge Function）経由 |
@@ -325,6 +451,8 @@ DBには**生データのみ保存**し、以下はアプリ側またはDB関数
 | 今週チェック済みか | `check_sessions`を今週の月曜以降でフィルタ |
 | 前回チェックからの経過日数 | `check_sessions`の最新`completed_at`と現在日時の差分 |
 | 総合スコア推移グラフ | `check_sessions`を時系列でSELECT |
+| 気圧注意レベル | `weather_snapshots.pressure_delta_hpa` からアプリ側で判定し、結果を `pressure_alert` に保存 |
+| 体調×注意日の振り返り | `condition_logs` と `pressure_alert` / 日付で結合して成長画面に表示 |
 
 ---
 
@@ -338,10 +466,12 @@ DBには**生データのみ保存**し、以下はアプリ側またはDB関数
 | LDAPとのSSO連携 | `users`に`external_auth_id`カラムを追加 |
 | レッスンコンテンツのCMS管理 | `skills`・`lessons`テーブルをDBに移行（現在はコードで管理） |
 | Web Push通知の購読情報 | `push_subscriptions`テーブルを追加（endpoint, p256dh, auth） |
+| 端末位置による天気 | `user_preferences`に緯度経度（同意必須）またはGeocoding結果を追加 |
+| 生理周期など高度な体調予報 | 別テーブル。初期スコープ外（要件定義書 F07） |
 
 ---
 
 *本設計書は要件定義書・参考資料コンテンツ仕様書と合わせて参照してください。*  
 *Supabase連携時はRow Level Security・Edge Functionsの実装詳細を別途作成すること。*
 
-*最終更新：2026年7月17日*
+*最終更新：2026年9月5日*

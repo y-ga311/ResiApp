@@ -26,7 +26,7 @@ export default function AppHeader({ showBadge = false }: AppHeaderProps) {
   return (
     <div className="flex-shrink-0 flex items-center justify-between px-5 pt-4 pb-2 bg-bg">
       <div className="flex items-center gap-3">
-        <div className="w-11 h-11 rounded-full overflow-hidden bg-[#DBEAFE] flex items-center justify-center flex-shrink-0">
+        <div className="w-11 h-11 rounded-full overflow-hidden bg-accent-lt flex items-center justify-center flex-shrink-0">
           <Image src="/icon.png" alt="icon" width={44} height={44} className="object-cover" />
         </div>
         <div className="flex flex-col gap-0">

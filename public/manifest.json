@@ -4,8 +4,8 @@
   "description": "こころのしなやかさを、毎日少しずつ。",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1B3A6B",
-  "theme_color": "#1B3A6B",
+  "background_color": "#E8895B",
+  "theme_color": "#E8895B",
   "orientation": "portrait",
   "icons": [
     {

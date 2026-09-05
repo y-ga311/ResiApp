@@ -620,7 +620,7 @@ export const CHECK_HISTORY: CheckScore[] = [
 export { FREQUENCY_OPTIONS as ANSWER_OPTIONS } from "./check";
 
 export const BADGES: Badge[] = [
-  { id: "first-check", name: "初回Check", icon: "CircleCheck", color: "#1B3A6B", earned: true },
+  { id: "first-check", name: "初回Check", icon: "CircleCheck", color: "#E8895B", earned: true },
   { id: "streak-7", name: "7日連続", icon: "Flame", color: "#FB923C", earned: true },
   { id: "first-lesson", name: "初レッスン", icon: "BookOpen", color: "#818CF8", earned: true },
   { id: "days-30", name: "30日達成", icon: "Trophy", color: "#94A3B8", earned: false },

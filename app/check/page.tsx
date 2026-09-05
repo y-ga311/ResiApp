@@ -119,7 +119,7 @@ export default function CheckPage() {
                 </div>
               </div>
 
-              <div className="h-3 rounded-full bg-[#E2E8F0] overflow-hidden">
+              <div className="h-3 rounded-full bg-stroke overflow-hidden">
                 <div
                   className="h-full rounded-full bg-accent transition-all"
                   style={{ width: `${LATEST.total}%` }}

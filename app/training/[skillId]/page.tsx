@@ -8,7 +8,7 @@ import { SKILLS, LESSONS_BY_SKILL } from "@/lib/mock-data";
 import type { Lesson } from "@/lib/types";
 
 const TYPE_CONFIG = {
-  learn:  { icon: BookOpen,  label: "学習",     color: "#1B3A6B" },
+  learn:  { icon: BookOpen,  label: "学習",     color: "#E8895B" },
   work:   { icon: PenLine,   label: "ワーク",   color: "#818CF8" },
   review: { icon: RotateCcw, label: "振り返り", color: "#FB923C" },
 };
@@ -35,11 +35,11 @@ function LessonRow({
         className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-[13px]"
         style={{
           backgroundColor: lesson.completed
-            ? "#1B3A6B"
+            ? "#E8895B"
             : isUnlocked
-            ? "#DBE8FF"
-            : "#F1F5F9",
-          color: lesson.completed ? "#FFF" : isUnlocked ? "#1B3A6B" : "#94A3B8",
+            ? "#FFE8D6"
+            : "#F5EDE4",
+          color: lesson.completed ? "#FFF" : isUnlocked ? "#E8895B" : "#A89080",
         }}
       >
         {lesson.completed ? <CheckCircle size={16} color="#FFF" /> : index + 1}
